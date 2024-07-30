@@ -61,7 +61,7 @@ const writeNewNoteToJson = (destination, content) => {
     })
 }
 
-// Post
+// Post - Receives a new note, save it to the request body, adds it to the db.json file, and returns the new note to the client
 app.post('/api/notes', (req,res) => {
     const { title, text } = req.body;
     if (title && text) {
@@ -84,7 +84,7 @@ app.post('/api/notes', (req,res) => {
     }
 })
 
-// Delete
+// Delete - reads the db.json file, uses the json objects uniqids to match the object to be deleted, removes that object from the db.json file, then rewrites the db.json file
 app.delete("/api/notes/:id", (req, res) => {
     let id = req.params.id;
     let parsedData;
