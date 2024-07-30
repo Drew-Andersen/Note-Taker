@@ -1,15 +1,16 @@
 // import express
-const { info } = require('console');
 const express = require('express');
 // import file system module
 const fs = require('fs');
 // import path
 const path = require('path');
+// helper method for generating unique ids
+const uniqid = require('uniqid');
 
 // Creates new app with express
 const app = express();
 // Port
-const port = 3001;
+const PORT = process.env.PORT || 3001;
 
 // Middleware for parsing JSOJN and urlencoding form data
 app.use(express.json());
@@ -28,8 +29,8 @@ app.get('/notes', (req, res) => {
 })
 
 // Get route to read the db.json file and send back the parse JSON data
-app.get('/app/notes', (req, res) => {
-    fs.readFile('db/db.json', 'utf8', (err, res) => {
+app.get('/api/notes', (req, res) => {
+    fs.readFile('db/db.json', 'utf8', (err, data) => {
         let jsonData = JSON.parse(data);
         console.log(jsonData);
         res.json(jsonData);
@@ -40,7 +41,7 @@ app.get('/app/notes', (req, res) => {
 const readThenAppendToJSON = (content, file) => {
     fs.readFile(file, 'utf8', (err, data) => {
         if (err) {
-            console.error(err);
+            console.log(err);
         } else {
             const parseData = JSON.parse(data);
             parseData.push(content);
@@ -78,7 +79,7 @@ app.post('/api/notes', (req,res) => {
             body: newNote
         }
 
-        res.json(responsel);
+        res.json(response);
     } else {
         res.json('Error in posting new note');
     }
@@ -88,19 +89,19 @@ app.post('/api/notes', (req,res) => {
 app.delete("/api/notes/:id", (req, res) => {
     let id = req.params.id;
     let parsedData;
-    fs.readFile("db/db.json", "utf8", (err, data) => {
+    fs.readFile('db/db.json', 'utf8', (err, data) => {
       if (err) {
-        console.error(err);
+        console.log(err);
       } else {
         parsedData = JSON.parse(data);
         const filterData = parsedData.filter((note) => note.id !== id);
-        writeNewNoteToJson("db/db.json", filterData);
+        writeNewNoteToJson('db/db.json', filterData);
       }
     });
     res.send(`Deleted note with ${req.params.id}`);
   });
   
   // App.listen is used to spin up our local server
-  app.listen(port, () =>
-    console.log(`App listening at http://localhost:${port} 🚀`)
+  app.listen(PORT, () =>
+    console.log(`App listening at http://localhost:${PORT} 🚀`)
   );
