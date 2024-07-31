@@ -101,7 +101,7 @@ app.delete("/api/notes/:id", (req, res) => {
     res.send(`Deleted note with ${req.params.id}`);
   });
   
-  // App.listen is used to spin up our local server
+  // App.listen is used start up our local server
   app.listen(PORT, () =>
     console.log(`App listening at http://localhost:${PORT} 🚀`)
   );

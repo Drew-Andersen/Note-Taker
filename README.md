@@ -2,7 +2,7 @@
 Note Taker
 
 ## Video link 
-** Add a video link for deplyed webpage through Render.com **
+[Video showing how to use the Note Taker Application](https://drive.google.com/file/d/1XeFENkOMMzS0LCWzeDK-Xo_BXA6e7W-8/view)
 
 ## Images
 ![Image of the terminal where it directs you to localhost:3001](<public/assets/images/terminal-localhost.png>)
