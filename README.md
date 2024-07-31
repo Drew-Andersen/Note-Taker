@@ -1,6 +1,9 @@
 # Note-Taker
 Note Taker
 
+## Deployed Website
+https://note-taker-hrdj.onrender.com
+
 ## Video link 
 [Video showing how to use the Note Taker Application](https://drive.google.com/file/d/1XeFENkOMMzS0LCWzeDK-Xo_BXA6e7W-8/view)
 
